@@ -1,13 +1,7 @@
-
-
-
-
-
 import numpy as np
 from sklearn.svm import SVC
 import streamlit as st
 
-# face_recognition_models is used only to locate pre-trained dlib model files.
 try:
     import face_recognition_models  # type: ignore
     _FaceRecognitionModelsAvailable = True
@@ -18,10 +12,6 @@ except ModuleNotFoundError:
 
 from src.database.db import get_all_students
 
-
-# dlib is an optional native dependency.
-# Import-time failure would crash the entire Streamlit app, so we degrade gracefully.
-# Naya — ImportError bhi catch karo
 try:
     import dlib
     _DlibAvailable = True

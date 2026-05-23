@@ -2,7 +2,6 @@ import numpy as np
 import io
 import streamlit as st
 
-# librosa is used for audio loading/splitting; make it optional too
 try:
     import librosa  # type: ignore
     _LibrosaAvailable = True
@@ -10,14 +9,12 @@ except ModuleNotFoundError:
     librosa = None  # type: ignore
     _LibrosaAvailable = False
 
-
-# resemblyzer is an optional native-ish dependency; degrade gracefully if missing
 try:
-    from resemblyzer import VoiceEncoder, preprocess_wav  # type: ignore
+    from resemblyzer import VoiceEncoder, preprocess_wav 
     _VoiceEncoderAvailable = True
 except ModuleNotFoundError:
-    VoiceEncoder = None  # type: ignore
-    preprocess_wav = None  # type: ignore
+    VoiceEncoder = None 
+    preprocess_wav = None 
     _VoiceEncoderAvailable = False
 
 

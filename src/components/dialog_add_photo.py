@@ -45,17 +45,15 @@ def add_photos_dialog():
             st.session_state.staged_images = [Image.open(f) for f in uploaded_files]
             st.toast(f'{len(uploaded_files)} photo(s) ready — click Done to add')
 
-    # Show staged count as feedback
     if st.session_state.staged_images:
         st.caption(f'✅ {len(st.session_state.staged_images)} photo(s) ready to add')
 
     st.divider()
 
     if st.button('Done', type='primary', width='stretch'):
-        # Only NOW move staged photos into the real list
         if 'attendance_images' not in st.session_state:
             st.session_state.attendance_images = []
 
         st.session_state.attendance_images.extend(st.session_state.staged_images)
-        st.session_state.staged_images = []  # Clear staging
+        st.session_state.staged_images = []  
         st.rerun()

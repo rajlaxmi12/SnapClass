@@ -4,23 +4,7 @@ import io
 
 @st.dialog("Share Class Link")
 def share_subject_dialog(subject_name, subject_code):
-    
-    # Dynamically detect the app's base URL
-    try:
-        base_url = st.secrets.get("BASE_URL", None)
-    except Exception:
-        base_url = None
-
-    if not base_url:
-        # Auto-detect from Streamlit's runtime headers
-        session = st.runtime.get_instance()._session_mgr.list_active_sessions()
-        try:
-            headers = st.context.headers
-            host = headers.get("host", "localhost:8501")
-            scheme = "https" if "localhost" not in host else "http"
-            base_url = f"{scheme}://{host}"
-        except Exception:
-            base_url = "http://localhost:8501"  # safe fallback
+    base_url = "snapclass-main.streamlit.app"
 
     join_url = f"{base_url}/?join-code={subject_code}"
 

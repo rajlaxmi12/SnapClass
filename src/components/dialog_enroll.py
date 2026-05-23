@@ -23,7 +23,6 @@ def enroll_dialog():
             st.error('Student session not found. Please login again.')
             st.stop()
 
-        # 1) Find subject by join_code
         res = (
             supabase.table('subjects')
             .select('subject_id, name, subject_code')
@@ -38,7 +37,6 @@ def enroll_dialog():
                 st.caption(str(res.error))
             st.stop()
 
-        # 2) Check duplicate enrollment
         check = (
             supabase.table('subject_students')
             .select('*')
@@ -56,7 +54,6 @@ def enroll_dialog():
             st.warning('You are already enrolled in this program')
             st.stop()
 
-        # 3) Insert enrollment
         try:
             insert_res = enroll_student_to_subject(student_id, subject['subject_id'])
         except Exception as e:
@@ -64,8 +61,6 @@ def enroll_dialog():
             st.caption(str(e))
             st.stop()
 
-        # enroll_student_to_subject returns response.data (current implementation)
-        # so we still show a success and re-run; if insert failed the UI would not update.
         st.success('Succesfully enrolled!')
         time.sleep(1)
         st.rerun()

@@ -14,13 +14,12 @@ import time
 from src.components.dialog_enroll import enroll_dialog
 from src.components.subject_card import subject_card
 
-# Optional UI components (not present in this repo snapshot)
 try:
-    from src.components.dialog_enroll import enroll_dialog  # type: ignore
-    from src.components.subject_card import subject_card  # type: ignore
+    from src.components.dialog_enroll import enroll_dialog  
+    from src.components.subject_card import subject_card  
 except ModuleNotFoundError:
-    enroll_dialog = None  # type: ignore
-    subject_card = None  # type: ignore
+    enroll_dialog = None  
+    subject_card = None 
 
 
 def student_dashboard():
@@ -80,7 +79,6 @@ def student_dashboard():
                     unenroll_student_to_subject(student_id, sid)
                     sub_name = sub['name']
                     st.toast(f'Unenrolled from {sub_name} successfully!')
-                    # st.toast(f'Unenrolled from {sub['name']} successfully!')
                     st.rerun()
 
         with cols[i % 2]:
